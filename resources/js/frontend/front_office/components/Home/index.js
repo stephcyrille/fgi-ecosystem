@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import { Tabs, Icon, Input, Skeleton} from 'antd';
 import { clearToken, clearUser } from '../../../libs/utils/auth_utils';
+import config from "../../../config"
 
 import './style.local.scss';
 
@@ -16,7 +17,7 @@ export default
 @connect((state, props) => ({}))
 class Index extends React.Component {
   componentWillMount() {
-    document.title = 'Home | Fac\'Social'
+    document.title = `Accueil | ${config.name}`
   }
 
   logout(){
@@ -38,7 +39,7 @@ class Index extends React.Component {
         <div className="">
           <nav className="navbar navbar-expand-lg navbar-dark sticky-top" style={{ backgroundColor: "#3c8cac" }}>
             <div className="container">
-              <a className="navbar-brand" href="#">Navbar</a>
+              <a className="navbar-brand" href="#">{ config.name }</a>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>

@@ -12,7 +12,7 @@ import { loginCStoreActions } from './store';
 import './style.local.scss';
 
 import { saveToken, saveUser } from '../../../../libs/utils/auth_utils';
-
+import config from "../../../../config"
 
 const { Step } = Steps;
 
@@ -261,10 +261,9 @@ class Login extends React.Component {
           <div className="whirly-loader" style={{ position: "absolute", left: "48%", top: "40%" }}></div>
         </div>}
         <div className="container">
-          <div className="row" style={{ paddingTop: "100px" }}>
-            <div id="block1" className="col-sm-6">
-              <h5>Bienvenu dans</h5>
-              <h1 className="main-title">FGI NETWORK</h1>
+          <div className="row" style={{ paddingTop: "10px" }}>
+            <div id="block1" className="offset-3 col-md-6">
+              <h1 className="main-title">{ config.name }</h1>
               <br /><hr />
               <p>Le premier reseau social universitaire de la Faculte de Genie Industriel. Partager vos requetes, sujets et toutes informations dans une seule communauté constituée de personnes qui sont proches de vous
               </p>
