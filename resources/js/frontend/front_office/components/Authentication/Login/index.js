@@ -65,7 +65,8 @@ const renderField = ({
             fontStyle: "italic",
             fontWeight: "bold",
             display: "block",
-            paddingTop: "8px"
+            paddingTop: "8px",
+            textAlign: "left"
           }}
         >
           { error }
@@ -85,7 +86,7 @@ export default
 @reduxForm({ form: "login", enableReinitialize: true })
 class Login extends React.Component {
   componentWillMount(){
-    const title = "Login | Fac'Social"
+    const title = `Login | ${config.name}`
     document.title = title
   }
 
@@ -261,262 +262,184 @@ class Login extends React.Component {
           <div className="whirly-loader" style={{ position: "absolute", left: "48%", top: "40%" }}></div>
         </div>}
         <div className="container">
-          <div className="row" style={{ paddingTop: "10px" }}>
-            <div id="block1" className="offset-3 col-md-6">
-              <h1 className="main-title">{ config.name }</h1>
-              <br /><hr />
-              <p>Le premier reseau social universitaire de la Faculte de Genie Industriel. Partager vos requetes, sujets et toutes informations dans une seule communauté constituée de personnes qui sont proches de vous
-              </p>
+        <div className="offset-3 col-md-6">
+            <div className="btn-content" style={{ padding: "50px 0px 0px 0px" }}>
+              <Button 
+                className={ login ? "btn btn-outline-light btn-md connect active" : "btn btn-outline-light btn-md connect"}
+                onClick={() => this.setLoginForm()}
+              >
+                Se connecter
+              </Button>
 
-                { login ? 
-                  <div className="btn-content">
-                    <Button 
-                      className="btn btn-outline-light btn-md connect active"
-                      onClick={() => this.setLoginForm()}
-                    >
-                      Se connecter
-                    </Button>
-
-                    <Button 
-                      className="btn btn-outline-light btn-md connect" 
-                      style={{ paddingLeft: "35px", paddingRight: "35px" }}
-                      onClick={() => this.setRegisterForm()}
-                    >
-                      S'inscrire
-                    </Button>
-                  </div>
-                  :
-                  <div className="btn-content">
-                    <Button 
-                      className="btn btn-outline-light btn-md connect"
-                      onClick={() => this.setLoginForm()}
-                    >
-                      Se connecter
-                    </Button>
-
-                    <Button 
-                      className="btn btn-outline-light btn-md connect active" 
-                      style={{ paddingLeft: "35px", paddingRight: "35px" }}
-                      onClick={() => this.setRegisterForm()}
-                    >
-                      S'inscrire
-                    </Button>
-                  </div>
-                }
+              <Button 
+                className={ register ? "btn btn-outline-light btn-md connect active" : "btn btn-outline-light btn-md connect" }
+                style={{ paddingLeft: "35px", paddingRight: "35px" }}
+                onClick={() => this.setRegisterForm()}
+              >
+                S'inscrire
+              </Button>
             </div>
+          </div>
 
-            <div className="col-sm-6">
-                { login == true &&
-                  <div id="block2">
-                    <h3 className="text-center connectTitle">Se connecter</h3>
-
-                    <Steps current={current}>
-                      {steps.map(item => (
-                        <Step key={item.title} title={item.title} />
-                      ))}
-                    </Steps>
-                    
-                    {current === 0 && (              
-                      <div className="steps-content">
-                        <Form>
-                          <div className="iconUser text-center">
-                            <i className="far fa-user-circle fa-5x"></i>
-                          </div>
-                          <label htmlFor="email">Email</label><br />
-                          <Field 
-                            className="form-control"
-                            component={renderField}
-                            type="email"
-                            label="Entrer votre email"
-                            name="email"
-                            autoFocus
-                            validate={[required, email]}
-                            onChange = {e => this._handleEmailChange(e)}
-                          />
-                           { unknowMessage && 
-                              <span
-                                style={{
-                                  paddingLeft: "0",
-                                  paddingRight: "1em",
-                                  color: "red",
-                                  fontSize: "0.8em",
-                                  fontStyle: "italic",
-                                  fontWeight: "bold",
-                                  display: "block",
-                                  paddingTop: "8px"
-                                }}
-                              >
-                                { unknowMessage }
-                              </span>
-                            }
-                          <br />
-                          <div className="steps-action">
-                            <Button 
-                              type="primary" 
-                              disabled={
-                                this.props.submitting ||
-                                this.props.pristine
-                              }
-                              onClick = {this.props.handleSubmit(this.next.bind(this))}
-                            >
-                              Suivant &nbsp;
-                              { btnLoading &&
-                                  <Spin indicator={antIcon} />
-                              }
-                            </Button>
-                          </div>
-                        </Form>
-                      </div>)
-                    }
-
-                      {current === 1 && (              
-                        <div className="steps-content">
-                          <Form>
-                             <div className="iconUser text-center">
-                              { user ? user.picture_path ? 
-                                  <img className="img-fluid img-thumbnail login_picture" src={user.picture_path} alt={ user.username } /> 
-                                    : 
-                                  <i className="far fa-user-circle fa-5x"></i> 
-                                  :
-                                <i className="far fa-user-circle fa-5x"></i> 
-                              }
-
-                              { checked &&
-                                  <h6 className='text-center' style={{ paddingTop: "10px" }}>
-                                    Bienvenu <b><i>{ user?user.email:'Johhn Doe' }</i></b>
-                                  </h6>
-                              }
-                            </div>
-                            <label htmlFor="password">Mot de passe</label><br />
-                            <Field 
-                              className="form-control"
-                              component={renderField}
-                              type="password"
-                              name="password"
-                              label="Votre mot de passe"
-                              autoFocus
-                              validate={[required, minLength6]}
-                            />
-                            { unknowMessage && 
-                              <span
-                                style={{
-                                  paddingLeft: "0",
-                                  paddingRight: "1em",
-                                  color: "red",
-                                  fontSize: "0.8em",
-                                  fontStyle: "italic",
-                                  fontWeight: "bold",
-                                  display: "block",
-                                  paddingTop: "8px"
-                                }}
-                              >
-                                { unknowMessage }
-                              </span>
-                            }
-                            <p style={{ marginTop: "10px" }}>
-                              <Checkbox
-                                checked={ boxChecked }
-                                onChange={ e => this.onCheckChange(e) }
-                              >
-                                Se souvenir de moi
-                              </Checkbox>
-                            </p>
-                            <br />
-                            <div className="steps-action">
-                              <Button 
-                                type="primary" 
-                                disabled={
-                                  this.props.submitting ||
-                                  this.props.pristine
-                                }
-                                onClick = {this.props.handleSubmit(this._handleLogin.bind(this))}
-                              >
-                                Se connecter
-                              </Button>
-
-                              <Button 
-                                style={{ marginLeft: 8 }} 
-                                onClick={() => this.prev()}
-                              >
-                                Annuler
-                              </Button>
-                            </div>
-                          </Form>
-                        </div>)
-                      }
-                    
+          <div className="row" style={{ paddingTop: "30px" }}>
+              { login == true &&
+              <div id="block1" className="offset-3 col-md-6">
+                <div id="blockLogin">
+                  <h3 className="text-center connectTitle">Se connecter</h3>
+                  
+                  <div className="logoFgi">
+                    <img src="/images/fgi.jpg" className="img-fluid" />
                   </div>
-                }
 
-                { register == true &&
-                  <div id="block2" className="">
-                    <h3 className="text-center connectTitle">S'inscrire</h3>
+                  <div className="steps-content">
+                    <Form>
+                      {/* <label htmlFor="email">Email</label><br /> */}
+                      <br />
+                      <Field 
+                        className="form-control"
+                        component={renderField}
+                        type="email"
+                        label="Entrer votre email"
+                        name="email"
+                        autoFocus
+                        validate={[required, email]}
+                        onChange = {e => this._handleEmailChange(e)}
+                        placeholder={"Email"}
+                      />
+                      {/* <label htmlFor="password">Mot de passe</label><br /> */}
+                      <br />
+                      <Field 
+                        className="form-control"
+                        component={renderField}
+                        type="password"
+                        name="password"
+                        label="Votre mot de passe"
+                        autoFocus
+                        placeholder={"Mot de passe"}
+                        validate={[required, minLength6]}
+                      />
+                      <p style={{ marginTop: "10px", textAlign: "left" }}>
+                        <Checkbox
+                          checked={ boxChecked }
+                          onChange={ e => this.onCheckChange(e) }
+                        >
+                          Se souvenir de moi
+                        </Checkbox>
+                      </p>
+                      <br />
 
-                    <div className="registerFormWrapper">
-                      <Form>
-                        <FormGroup>
-                          <label htmlFor="first_name">Nom</label>
-                          <Field 
-                            className="form-control"
-                            component={renderField}
-                            type="text"
-                            name="first_name"
-                            autoFocus
-                            validate={[required, minLength2]}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <label htmlFor="last_name">Prénom</label>
-                          <Field 
-                            className="form-control"
-                            component={renderField}
-                            type="text"
-                            name="last_name"
-                            validate={[required, minLength2]}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <label htmlFor="email">Email</label>
-                          <Field 
-                            className="form-control"
-                            component={renderField}
-                            type="email"
-                            name="register_email"
-                            validate={[required, email]}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <label htmlFor="register_password">Mot de passe</label>
-                          <Field 
-                            className="form-control"
-                            component={renderField}
-                            type="password"
-                            name="register_password"
-                            validate={[required, minLength6]}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <label htmlFor="password_confirmation">Confirmation mot de passe</label>
-                          <Field 
-                            className="form-control"
-                            component={renderField}
-                            type="password"
-                            name="password_confirmation"
-                            validate={[required, passwordMatch]}
-                          />
-                        </FormGroup>
 
-                        <FormGroup>
-                          <label htmlFor="birthdate">Date de naissance</label>
-                          <Field 
-                            className="form-control"
-                            component={renderField}
-                            type="date"
-                            name="birthdate"
-                            validate={[required]}
-                          />
-                        </FormGroup>
+                      <div className="steps-action">
+                        <Button 
+                          type="primary" 
+                          disabled={
+                            this.props.submitting ||
+                            this.props.pristine
+                          }
+                          onClick = {this.props.handleSubmit(this.next.bind(this))}
+                        >
+                          Suivant &nbsp;
+                          { btnLoading &&
+                              <Spin indicator={antIcon} />
+                          }
+                        </Button>
+                      </div>
+                    </Form>
+                  </div>                  
+                </div>
+              </div>
+              }
+              
 
+              { register == true &&
+              <div id="block1" className="offset-2 col-md-8">
+                <div id="blockRegister" className="">
+                  <h3 className="text-center connectTitle">S'inscrire</h3>
+
+                  <div className="registerFormWrapper">
+                    <Form className="row">
+                      <FormGroup className="col-md-4">
+                        <label htmlFor="first_name">Nom</label>
+                        <Field 
+                          className="form-control"
+                          component={renderField}
+                          type="text"
+                          name="first_name"
+                          autoFocus
+                          validate={[required, minLength2]}
+                          placeholder={"Nom de famille"}
+                        />
+                      </FormGroup>
+                      <FormGroup className="col-md-4">
+                        <label htmlFor="last_name">Prénom</label>
+                        <Field 
+                          className="form-control"
+                          component={renderField}
+                          type="text"
+                          name="last_name"
+                          validate={[required, minLength2]}
+                          placeholder={"Prénom (s)"}
+                        />
+                      </FormGroup>
+                      <FormGroup className="col-md-4">
+                        <label htmlFor="last_name">Matricule</label>
+                        <Field 
+                          className="form-control"
+                          component={renderField}
+                          type="text"
+                          name="matricule"
+                          validate={[required, minLength2]}
+                          placeholder={"20GXXXXX"}
+                        />
+                      </FormGroup>
+                      <FormGroup className="col-md-4">
+                        <label htmlFor="email">Email</label>
+                        <Field 
+                          className="form-control"
+                          component={renderField}
+                          type="email"
+                          name="register_email"
+                          validate={[required, email]}
+                          placeholder={"xyz@mail.com"}
+                        />
+                      </FormGroup>
+                      <FormGroup className="col-md-4">
+                        <label htmlFor="register_password">Mot de passe</label>
+                        <Field 
+                          className="form-control"
+                          component={renderField}
+                          type="password"
+                          name="register_password"
+                          validate={[required, minLength6]}
+                          placeholder={"Mot de passe"}
+                        />
+                      </FormGroup>
+                      <FormGroup className="col-md-4">
+                        <label htmlFor="password_confirmation">Confirmation mot de passe</label>
+                        <Field 
+                          className="form-control"
+                          component={renderField}
+                          type="password"
+                          name="password_confirmation"
+                          validate={[required, passwordMatch]}
+                          placeholder={"Ressaisissez le mot de passe"}
+                        />
+                      </FormGroup>
+
+                      <FormGroup className="col-md-4">
+                        <label htmlFor="birthdate">Date de naissance</label>
+                        <Field 
+                          className="form-control"
+                          component={renderField}
+                          type="date"
+                          name="birthdate"
+                          validate={[required]}
+                        />
+                      </FormGroup>
+                    </Form>
+
+                    <div className="row">
+                      <div id="block1" className="offset-2 col-md-8" style={{ paddingTop: "20px" }}>
                         <Button 
                           type="primary" 
                           disabled={
@@ -527,10 +450,16 @@ class Login extends React.Component {
                         >
                             Valider
                         </Button>
-                      </Form>
+                      </div>
                     </div>
                   </div>
-                }
+                </div>
+                </div>
+              }
+
+
+            <div className="col-sm-6">
+                
 
             </div>
           </div>

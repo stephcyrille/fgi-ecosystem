@@ -1,6 +1,7 @@
 .background{
 	width: 100%;
-	background-color: grey;
+	background: url("/images/bckg.jpeg");
+  background-size: cover;
   padding-bottom: 100px;
 }
 
@@ -12,19 +13,32 @@
 #block1{
   text-align: center;
   color: white;
-  margin-bottom: 40px;
 }
-#block2{
+#blockLogin{
   background: white;
+  color: rgb(75, 75, 75);
   width: 350px;
   margin: auto;
-  padding: 25px 30px 40px 30px;
+  padding: 2px 30px 30px 30px;
   border-radius: 5px;
 }
-hr{
-  width: 300px;
-  background-color: white;
+
+#blockRegister{
+  color: rgb(75, 75, 75);
+  text-align: left;
+  background: white;
+  padding: 2px 30px 30px 30px;
+  border-radius: 5px;
 }
+
+.logoFgi{
+  padding: 10px;
+}
+
+.logoFgi img{
+  width: 50%;
+}
+
 h5{
   font-weight: normal;
   font-size: 17px;
@@ -84,59 +98,44 @@ hr+p{
 	border-radius: 0px;
 	padding: 5px 25px;
   color: #fff;
-  background-color: #6e983d;
+  background-color: #2b88be;
 }
 .btn.btn-outline-light.btn-md.connect.active{
-  color: #6e983d;
+  color: #2b88be;
   background-color: #fff;
 }
 .btn.btn-outline-light.btn-md.connect:hover{
-	color: #6e983d;
+	color: #2b88be;
 	background-color: #fff;
 }
 
 
 
 .connectTitle{
+    margin-top: 25px;
     margin-bottom: 25px;
-    background-color: #05630017;
+    background-color: #001a6317;
     padding: 10px;
 }
 
-/* Ant modifie */
-.ant-steps-item-process.ant-steps-item-icon {
-    background: #6e983d !important;
-}
+// /* Ant modifie */
+// .ant-steps-item-process.ant-steps-item-icon {
+//     background: #6e983d !important;
+// }
 
-.ant-steps-item-process.ant-steps-item-icon {
-    border-color: #056300;
-}
+// .ant-steps-item-process.ant-steps-item-icon {
+//     border-color: #056300;
+// }
 
-.ant-steps-item-finish.ant-steps-item-icon {
-    background-color: #fff !important;
-    border-color: #056300;
-}
+// .ant-steps-item-finish.ant-steps-item-icon {
+//     background-color: #fff !important;
+//     border-color: #056300;
+// }
 
-.ant-steps-item-finish.ant-steps-item-icon > .ant-steps-icon {
-    color: #6e983d !important;
-}
+// .ant-steps-item-finish.ant-steps-item-icon > .ant-steps-icon {
+//     color: #6e983d !important;
+// }
 
-/* Button form soumettre */
-.ant-btn-primary{
-    color: #fff;
-    background-color: #056300;
-    border-color: #056300;
-}
-.ant-btn-primary:hover, .ant-btn-primary:focus {
-    color: #fff;
-    background-color: #6e983d;
-    border-color: #056300;
-}
-.ant-btn:hover, .ant-btn:focus, .ant-btn:active {
-    color: #056300;
-    background-color: #fff;
-    border-color: #6e983d;
-}
 
 
 .cover-spiner{
