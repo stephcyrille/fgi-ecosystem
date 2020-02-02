@@ -1,78 +1,75 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## FGI ECosystem
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Application de d'archivage FGI réalisé avec :
 
-## About Laravel
+- [Laravel 6](https://laravel.com/docs).
+- [Node Js 12.14](https://nodejs.org/en/).
+- [ReactJs](https://fr.reactjs.org/).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Prérequis
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Le travail sur ce projet nécéssite des connaissances de base en developement 
+- HTML, CSS, JS, Bootstraps 
+- PHP
+- SQL ou ORM
+- Connaissance de git et CLI git 
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Le système nécécite l'installation d'un ensembles de programes et librairies parmis les quelles on aura : PHP v7.3... Laravel 6, Node Js, un SGBD de son choix peut importe (MySQL, Postgres, Maria DB...). Aussi Git pour le versionning et la collaboration sur le projet.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### PHP et SGBD
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+En général, PHP, Maria DB ou MySQL vienent avec WAMP serveur ou XAMP serveur, donc faudrait juste mettre PHP en variable d'environement.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Laravel 6
 
-## Code of Conduct
+Laravel est un Framework PHP qui a besoin de PHP, PHP 7.3.. pour la version 6 que nous allons utiliser dans notre projet. Mais aussi de [Composer](https://getcomposer.org/). Composer est un gestionnaire de dépendance ou de librairies PHP, donc nécéssite l'installation préalable de PHP et l'ajout de ce programme en variable d'environement pour fonctionner.
+Une fois composer installer vous pouvez passer à la récupération du code source du projet dans le repertoire.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+### Remarque: 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Créer votre base de donnée "fgibd" de preférence, car les migrations correspondent à la création des tables de la base de données. Action qui ne saurait s'exécuter seulement lorsqu'une base de données est présente** 
 
-## License
+Avant de lancer toutes les commandes, ouvrez le fichier .env et configurez le comme suit:
+    DB_CONNECTION=pgsql     // Correspont à mon connecteur de base de données (Dans mon cas c'est Postgres, ceux qui ont MySQL ce sera mysql)
+    DB_PORT=5432            // Correspond au port du SGBD (Dans mon cas c'est celui de Postgres pour MySql c'est 3306 pour Maria DB c'est 3307)
+    DB_DATABASE=fgidb       // Nom de la Base de données
+    DB_USERNAME=fgidb       // Nom de l'utilisateur de la base de données
+    DB_PASSWORD=fgidb       // Mot de passe de l'utilisateur de la Base de données 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Mise en place du projet
+
+    1. Cloner le projet 
+    ```sh
+    git clone https://github.com/stephcyrille/fgi-ecosystem.git
+    ```
+
+    2. Téléchargement des dépendances php 
+    ```sh
+    composer install
+    ```
+
+    3. Téléchargement des dépendances Javascript 
+    ```sh
+    npm install
+    ```
+
+    4. Lancement de Laravel  (BACKEND)
+    ```sh
+    php artisant migrate
+    php artisan passport:install
+    php artisan serve
+    ```
+
+    4. Lancement de React (FRONTEND)
+    ```sh
+    npm run dev
+    ```
+
