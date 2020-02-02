@@ -34,42 +34,32 @@ Une fois composer installer vous pouvez passer à la récupération du code sour
 
 ### Remarque: 
 
-**Créer votre base de donnée "fgibd" de preférence, car les migrations correspondent à la création des tables de la base de données. Action qui ne saurait s'exécuter seulement lorsqu'une base de données est présente** 
+**Créer votre base de donnée, car les migrations correspondent à la création des tables de la base de données, action qui ne saurait s'exécuter seulement lorsqu'une base de données est présente** 
 
-Avant de lancer toutes les commandes, ouvrez le fichier .env et configurez le comme suit:
-    DB_CONNECTION=pgsql     // Correspont à mon connecteur de base de données (Dans mon cas c'est Postgres, ceux qui ont MySQL ce sera mysql)
-    DB_PORT=5432            // Correspond au port du SGBD (Dans mon cas c'est celui de Postgres pour MySql c'est 3306 pour Maria DB c'est 3307)
-    DB_DATABASE=fgidb       // Nom de la Base de données
-    DB_USERNAME=fgidb       // Nom de l'utilisateur de la base de données
-    DB_PASSWORD=fgidb       // Mot de passe de l'utilisateur de la Base de données 
+Avant de lancer toutes les commandes, ouvrez le fichier .env et configurez le comme suit: <br />
+    DB_CONNECTION=pgsql     // Correspont à mon connecteur de base de données (Dans mon cas c'est Postgres, ceux qui ont MySQL ce sera mysql)<br />
+    DB_PORT=5432            // Correspond au port du SGBD (Dans mon cas c'est celui de Postgres pour MySql c'est 3306 pour Maria DB c'est 3307)<br />
+    DB_DATABASE=fgidb       // Nom de la Base de données<br />
+    DB_USERNAME=fgidb       // Nom de l'utilisateur de la base de données<br />
+    DB_PASSWORD=fgidb       // Mot de passe de l'utilisateur de la Base de données <br />
 
 
 ## Mise en place du projet
 
     1. Cloner le projet 
-    ```sh
     git clone https://github.com/stephcyrille/fgi-ecosystem.git
-    ```
 
     2. Téléchargement des dépendances php 
-    ```sh
     composer install
-    ```
 
     3. Téléchargement des dépendances Javascript 
-    ```sh
     npm install
-    ```
 
     4. Lancement de Laravel  (BACKEND)
-    ```sh
     php artisant migrate
     php artisan passport:install
     php artisan serve
-    ```
 
     4. Lancement de React (FRONTEND)
-    ```sh
     npm run dev
-    ```
 
