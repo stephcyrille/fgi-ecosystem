@@ -32,16 +32,6 @@ Laravel est un Framework PHP qui a besoin de PHP, PHP 7.3.. pour la version 6 qu
 Une fois composer installer vous pouvez passer à la récupération du code source du projet dans le repertoire.
 
 
-### Remarque: 
-
-**Créer votre base de donnée, car les migrations correspondent à la création des tables de la base de données, action qui ne saurait s'exécuter seulement lorsqu'une base de données est présente** 
-
-Avant de lancer toutes les commandes, ouvrez le fichier .env et configurez le comme suit: <br />
-    DB_CONNECTION=pgsql     // Correspont à mon connecteur de base de données (Dans mon cas c'est Postgres, ceux qui ont MySQL ce sera mysql)<br />
-    DB_PORT=5432            // Correspond au port du SGBD (Dans mon cas c'est celui de Postgres pour MySql c'est 3306 pour Maria DB c'est 3307)<br />
-    DB_DATABASE=fgidb       // Nom de la Base de données<br />
-    DB_USERNAME=fgidb       // Nom de l'utilisateur de la base de données<br />
-    DB_PASSWORD=fgidb       // Mot de passe de l'utilisateur de la Base de données <br />
 
 
 ## Mise en place du projet
@@ -63,3 +53,13 @@ Avant de lancer toutes les commandes, ouvrez le fichier .env et configurez le co
     4. Lancement de React (FRONTEND)
     npm run dev
 
+### Remarque: 
+
+**Créer votre base de donnée, car les migrations correspondent à la création des tables de la base de données, action qui ne saurait s'exécuter seulement lorsqu'une base de données est présente** 
+
+Avant de lancer toutes les commandes, ouvrez le fichier .env et configurez le comme suit: <br />
+    DB_CONNECTION=pgsql     // Correspont à mon connecteur de base de données (Dans mon cas c'est Postgres, ceux qui ont MySQL ce sera mysql)<br />
+    DB_PORT=5432            // Correspond au port du SGBD (Dans mon cas c'est celui de Postgres pour MySql c'est 3306 pour Maria DB c'est 3307)<br />
+    DB_DATABASE=fgidb       // Nom de la Base de données<br />
+    DB_USERNAME=fgidb       // Nom de l'utilisateur de la base de données<br />
+    DB_PASSWORD=fgidb       // Mot de passe de l'utilisateur de la Base de données <br />
