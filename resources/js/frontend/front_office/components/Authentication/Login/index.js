@@ -111,29 +111,42 @@ class Login extends React.Component {
     this.props.dispatch(loginCStoreActions.setBtnLoading(loading));
 
     const email = formValues.email
-    this.props.dispatch(loginCStoreActions.setEmail(email));
+    const password = formValues.password
+    // this.props.dispatch(loginCStoreActions.setEmail(email));
+    const credentials = {
+      email: email,
+      password: password
+    }
 
 
     // We will use axios there to fetch if user exits
     window.axios
-      .post("/api/profiles/check/email", { email : email })
+      .post("/api/auth/login", credentials)
       .then(response => {
+        this.props.dispatch(loginCStoreActions.setUnknwoUserMessage(null));
         console.log('response >> ', response);
         const loading = false
-        this.props.dispatch(loginCStoreActions.setBtnLoading(loading));
+        this.props.dispatch(loginCStoreActions.setLoading(loading));
 
-        const checked = true
-        this.props.dispatch(loginCStoreActions.setChecked(checked));
+        let data = response.data.data
 
-        const current = this.props.loginCStore.current + 1;
-        this.props.dispatch(loginCStoreActions.setCurrentValue(current));
+        // Save loggedIn user on localStorage
+        saveUser(JSON.stringify(data.userprofile));
 
-        const user = response.data.data
-        this.props.dispatch(loginCStoreActions.setUserValue(user));
+        // Save token on localStorage
+        saveToken(data.token)
+        let param = new URLSearchParams(this.props.location.search);
+        console.log("param ", param.get('redirect'))
+
+        if(!param.get('redirect')){
+          window.location.href = "/"; 
+        } else {
+          window.location.href = param.get('redirect'); 
+        }
       })
-      .catch(error => {
+      .catch(error => {        
         const loading = false
-        this.props.dispatch(loginCStoreActions.setBtnLoading(loading));
+        this.props.dispatch(loginCStoreActions.setLoading(loading));
 
         const message = error.response.data.message
         this.props.dispatch(loginCStoreActions.setUnknwoUserMessage(message));
